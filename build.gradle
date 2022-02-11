@@ -1,0 +1,47 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'RestAssured-Groovy'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //compile 'org.codehaus.groovy:groovy-all:3.0.9'
+    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.9', ext: 'pom'
+    // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.5.0'
+    //compile 'io.rest-assured:json-schema-validator:3.0.3'
+    // https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '4.5.0'
+
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation group: 'org.testng', name: 'testng', version: '7.5'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.0-alpha5'
+
+
+
+
+    //testImplementation 'io.rest-assured:rest-assured:4.3.1'
+    //testCompile group: 'org.testng', name: 'testng', version: '7.3.0'
+}
+
+test{
+    useTestNG(){
+        testLogging.showStandardStreams = true
+        useDefaultListeners = true
+        reports.html.enabled = false
+        parallel = "tests"
+       // includeGroups 'smoke'
+       //excludeGroups 'Regression'
+    }
+}
